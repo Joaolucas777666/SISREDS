@@ -1,0 +1,23 @@
+body{
+
+    width: 400px;
+    margin: 0;
+    padding: 20;
+
+    font-family: monospace, sans-serif;
+    background-color: #5a02e7;
+    color: #fff;
+
+    box-sizing: border-box;
+
+    h1{
+    text-align: center;
+    margin-top: 10px;
+    }
+
+    p {
+        text-align: center;
+        margin-top: 14px;
+    }
+
+}
