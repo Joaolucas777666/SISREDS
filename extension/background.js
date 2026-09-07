@@ -23,7 +23,8 @@ chrome.runtime.onMessage.addListener(async (mensagem) => {
         console.log(">>> É uma URL! Enviando para o Flask...");
 
 
-        // Faz uma requisição HTTP para o Flask.
+        // Faz uma requisição HTTP para o Flask. Por isso usa o metodo fetch.
+        // Usa o aiwait para esperar a resposta do Flask antes de continuar a execução do código.
         // O método POST será utilizado para enviar a URL
         // para o endpoint /api/analisar-url.
         const resposta = await fetch(
@@ -43,6 +44,8 @@ chrome.runtime.onMessage.addListener(async (mensagem) => {
 
 
                 // Define os dados que serão enviados para o Flask.
+                // nesse caso, a URL que foi recebida do content.js.
+                // O JSON.stringify converte o objeto JavaScript em uma string JSON.
                 body: JSON.stringify({
 
                     // Cria o campo "url" no JSON.

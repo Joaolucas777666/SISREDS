@@ -18,6 +18,7 @@ def inicio():
 
 # criando rota de teste da API
 @app.route("/api/status")
+# criando a função para retornar o status da API
 def api_status():
     # retornando um json com o status da API
     return jsonify({"status": "Online!",
@@ -26,6 +27,7 @@ def api_status():
 
 # criando rota para analisar a url
 @app.route("/api/analisar-url", methods=["POST"])
+# criando a função para analisar a url
 def analisar_url():
         # obtendo a url do corpo da requisição
         dados = request.get_json()
