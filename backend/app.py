@@ -31,7 +31,7 @@ def analisar_url():
         dados = request.get_json()
         url = dados["url"]
 
-        # imprimindo a url recebida no console
+        # imprimindo a url recebida no console do terminal
         print(f"URL recebida: {url}")
 
         # retornando um json com a url recebida

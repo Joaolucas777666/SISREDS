@@ -1,4 +1,6 @@
-// Função para verificar o status do backend
+// Função para verificar o status do backend utilizando fetch
+//  e async/await que significa que a função é assíncrona e 
+// pode usar await para esperar por Promises
 async function verificarBackend() {
 
      try {
