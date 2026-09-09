@@ -15,6 +15,7 @@ const dados = await resposta.json();
 console.log(dados);
 
 // Atualiza o conteúdo do elemento com o ID "status" com o status do backend
+// utilizando método get ElementById para selecionar o elemento e textContent para definir o texto
 document.getElementById("status").textContent =
      "🟢 Backend " + dados.status;
      
