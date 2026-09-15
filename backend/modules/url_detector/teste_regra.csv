@@ -1,3 +1,51 @@
 Classificação real,Url,Malicious,Resultado da regra
-Legitima,https://www.ibm.com,,Não analisada
+Legitima,https://www.ibm.com,0,Legitima
+Legitima,https://www.intel.com,0,Legitima
+Legitima,https://www.amd.com,0,Legitima
+Legitima,https://www.nvidia.com,0,Legitima
+Legitima,https://www.cisco.com,0,Legitima
+Legitima,https://www.oracle.com,0,Legitima
+Legitima,https://www.redhat.com,0,Legitima
+Legitima,https://www.jetbrains.com,0,Legitima
+Legitima,https://www.eclipse.org,0,Legitima
+Legitima,https://www.w3.org,0,Legitima
+Legitima,https://developer.mozilla.org,0,Legitima
+Legitima,https://stackoverflow.com,0,Legitima
+Legitima,https://www.linuxfoundation.org,0,Legitima
+Legitima,https://www.r-project.org,0,Legitima
+Legitima,https://www.mathworks.com,0,Legitima
+Legitima,https://www.autodesk.com,0,Legitima
+Legitima,https://www.adobe.com,,Não analisada
+Legitima,https://www.sony.com,,Não analisada
+Legitima,https://www.samsung.com,,Não analisada
+Legitima,https://www.nintendo.com,,Não analisada
+Legitima,https://www.playstation.com,,Não analisada
+Legitima,https://www.xbox.com,,Não analisada
+Legitima,https://www.spotify.com,,Não analisada
+Legitima,https://www.intuit.com,,Não analisada
+Legitima,https://www.salesforce.com,,Não analisada
 Maligna,http://125.41.224.2:59933/bin.sh,,Não analisada
+Maligna,http://125.43.246.211:40926/bin.sh,,Não analisada
+Maligna,http://101.59.79.119:50248/i,,Não analisada
+Maligna,http://105.186.221.48:45881/i,,Não analisada
+Maligna,http://113.228.148.143:56788/i,,Não analisada
+Maligna,http://182.116.48.4:52963/i,,Não analisada
+Maligna,http://101.59.79.119:50248/bin.sh,,Não analisada
+Maligna,http://113.228.148.143:56788/bin.sh,,Não analisada
+Maligna,https://workerstats.net/downloadables/nig20083.zip	,,Não analisada
+Maligna,https://workerstats.net/downloadables/getthem20083.zip,,Não analisada
+Maligna,https://get.actvated.win/Update.zip,,Não analisada
+Maligna,https://srv.conti.pk/contis.exe,,Não analisada
+Maligna,http://194.59.31.231:65416/b/kal64,,Não analisada
+Maligna,http://194.59.31.231:65416/b/amd64,,Não analisada
+Maligna,http://194.59.31.231:65416/b/kswpad,,Não analisada
+Maligna,https://get.activatd.win/,,Não analisada
+Maligna,http://5.75.162.206:9003/fission_payload.sh,,Não analisada
+Maligna,https://copiose.org/test_proliv/b?o=df2d61526e27a2bc,,Não analisada
+Maligna,http://112.93.139.83:48371/i,,Não analisada
+Maligna,http://213.232.114.14/sshd,,Não analisada
+Maligna,https://45.145.12.239/main.exe,,Não analisada
+Maligna,http://101.85.133.18:60949/i,,Não analisada
+Maligna,http://61.52.147.68:37007/i,,Não analisada
+Maligna,http://221.14.170.47:43520/i,,Não analisada
+Maligna,http://190.109.227.236:33009/i,,Não analisada

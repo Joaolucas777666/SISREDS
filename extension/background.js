@@ -42,7 +42,7 @@ chrome.runtime.onMessage.addListener(async (mensagem) => {
                     "Content-Type": "application/json"
                 },
 
-
+ 
                 // Define os dados que serão enviados para o Flask.
                 // nesse caso, a URL que foi recebida do content.js.
                 // O JSON.stringify converte o objeto JavaScript em uma string JSON.
