@@ -38,13 +38,6 @@ urls_legitimas = [
     "https://www.ufersa.edu.br"
 ]
 
-#for url in urls_malignas:
-    #print(f"\nAnalisando a URL maligna: {url}")
-    #resultado = analisar_url(url)
-
-#for url in urls_legitimas:
-    #print(f"\nAnalisando a URL legítima: {url}")
-    #resultado = analisar_url(url)   
 
 # Lista para armazenar os resultados
 resultado_teste2 = []
@@ -156,32 +149,71 @@ urls_legitimas_teste2 = [
 ]
 
 for url in urls_malignas_teste2:
+
     resultado = analisar_url(url)
 
-    linha = {
-        "Classificação": "Maligna",
-        "URL": url,
-        "Malicious": resultado["malicious"],
-        "Suspicious": resultado["suspicious"],
-        "Undetected": resultado["undetected"],
-        "Harmless": resultado["harmless"],
-        "Timeout": resultado["timeout"]
-    }
+    if "erro" in resultado:
+
+        print("URL não analisada:", url)
+
+        linha = {
+            "Classificação": "Maligna",
+            "URL": url,
+            "Malicious": "",
+            "Suspicious": "",
+            "Undetected": "",
+            "Harmless": "",
+            "Timeout": "",
+            "Erro": resultado["erro"]
+        }
+
+    else:
+
+        linha = {
+            "Classificação": "Maligna",
+            "URL": url,
+            "Malicious": resultado["malicious"],
+            "Suspicious": resultado["suspicious"],
+            "Undetected": resultado["undetected"],
+            "Harmless": resultado["harmless"],
+            "Timeout": resultado["timeout"],
+            "Erro": ""
+        }
 
     resultado_teste2.append(linha)
 
 for url in urls_legitimas_teste2:
+
     resultado = analisar_url(url)
 
-    linha = {
+    if "erro" in resultado:
+
+        print("URL não analisada:", url)
+
+        linha = {
+            "Classificação": "Legitima",
+            "URL": url,
+            "Malicious": "",
+            "Suspicious": "",
+            "Undetected": "",
+            "Harmless": "",
+            "Timeout": "",
+            "Erro": resultado["erro"]
+        }
+
+    else:
+
+        linha = {
             "Classificação": "Legitima",
             "URL": url,
             "Malicious": resultado["malicious"],
             "Suspicious": resultado["suspicious"],
             "Undetected": resultado["undetected"],
             "Harmless": resultado["harmless"],
-            "Timeout": resultado["timeout"]
+            "Timeout": resultado["timeout"],
+            "Erro": ""
         }
+
     resultado_teste2.append(linha)
 
 # Transformando a lista em uma tabela
@@ -195,3 +227,133 @@ print("Análise concluída!")
 
 # mostrando o arquivo em que os dados foram guardados
 print("teste2.csv")
+
+
+###########################################################
+
+# Teste de regra de detecção malicious >=2 == Url Maligna
+
+resultado_regra_lista = []
+
+urls_malignas_regra = [
+
+    "http://125.41.224.2:59933/bin.sh",
+    "http://125.43.246.211:40926/bin.sh",
+    "http://101.59.79.119:50248/i",
+    "http://105.186.221.48:45881/i",
+    "http://113.228.148.143:56788/i",
+    "http://182.116.48.4:52963/i",
+    "http://101.59.79.119:50248/bin.sh",
+    "http://113.228.148.143:56788/bin.sh",
+    "https://workerstats.net/downloadables/nig20083.zip	",
+    "https://workerstats.net/downloadables/getthem20083.zip",
+    "https://get.actvated.win/Update.zip",
+    "https://srv.conti.pk/contis.exe",
+    "http://194.59.31.231:65416/b/kal64",
+    "http://194.59.31.231:65416/b/amd64",
+    "http://194.59.31.231:65416/b/kswpad",
+    "https://get.activatd.win/",
+    "http://5.75.162.206:9003/fission_payload.sh",
+    "https://copiose.org/test_proliv/b?o=df2d61526e27a2bc",
+    "http://112.93.139.83:48371/i",
+    "http://213.232.114.14/sshd",
+    "https://45.145.12.239/main.exe",
+    "http://101.85.133.18:60949/i",
+    "http://61.52.147.68:37007/i",
+    "http://221.14.170.47:43520/i",
+    "http://190.109.227.236:33009/i"
+
+
+]
+
+urls_legitimas_regra = [
+
+    "https://www.ibm.com",
+    "https://www.intel.com",
+    "https://www.amd.com",
+    "https://www.nvidia.com",
+    "https://www.cisco.com",
+    "https://www.oracle.com",
+    "https://www.redhat.com",
+    "https://www.jetbrains.com",
+    "https://www.eclipse.org",
+    "https://www.w3.org",
+    "https://developer.mozilla.org",
+    "https://stackoverflow.com",
+    "https://www.linuxfoundation.org",
+    "https://www.r-project.org",
+    "https://www.mathworks.com",
+    "https://www.autodesk.com",
+    "https://www.adobe.com",
+    "https://www.sony.com",
+    "https://www.samsung.com",
+    "https://www.nintendo.com",
+    "https://www.playstation.com",
+    "https://www.xbox.com",
+    "https://www.spotify.com",
+    "https://www.intuit.com",
+    "https://www.salesforce.com"
+]
+
+for url in urls_legitimas_regra:
+
+    resultado = analisar_url(url)
+
+    if "erro" in resultado:
+
+        resultado_regra = "Não analisada"
+
+    else:
+
+        # se o atributo "malicious" for maior ou igual a 2
+        # classifique como maligna.
+
+        if resultado["malicious"] >= 2:
+            resultado_regra = "Maligna"
+        else:
+            resultado_regra = "Legitima"
+
+    linha = {
+        "Classificação real": "Legitima",
+        "Url": url,
+        "Malicious": resultado.get("Malicious", ""),
+        "Resultado da regra": resultado_regra
+    }
+
+    resultado_regra_lista.append(linha)
+
+
+for url in urls_malignas_regra:
+
+    resultado = analisar_url(url)
+
+    if "erro" in resultado:
+
+        resultado_regra = "Não analisada"
+
+    else:
+
+        # se o atributo "malicious" for maior ou igual a 2
+        # classifique como maligna.
+
+        if resultado["malicious"] >= 2:
+            resultado_regra = "Maligna"
+        else:
+            resultado_regra = "Legitima"
+
+    linha = {
+        "Classificação real": "Maligna",
+        "Url": url,
+        "Malicious": resultado.get("Malicious", ""),
+        "Resultado da regra": resultado_regra
+    }
+
+    resultado_regra_lista.append(linha)
+
+# Tranforma o resultado em dataframe
+dados_regra = pd.DataFrame(resultado_regra_lista)
+# Salva o dataframe em "teste_regra.csv"
+dados_regra.to_csv("teste_regra.csv", index=False)
+
+print("Teste da regra concluído!")
+print("teste_regra.csv")

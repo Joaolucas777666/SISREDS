@@ -1,0 +1,3 @@
+Classificação real,Url,Malicious,Resultado da regra
+Legitima,https://www.ibm.com,,Não analisada
+Maligna,http://125.41.224.2:59933/bin.sh,,Não analisada

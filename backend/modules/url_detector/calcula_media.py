@@ -122,3 +122,15 @@ print("\nAnálise de casos fronteira - URLs com casos malicious == 0:", m_casos_
 print("Análise de casos fronteira - URLs com casos malicious == 1:", m_casos_malicious1.main_url())
 
 input("\nPressione Enter para encerrar o D-Tale...")
+
+# Após analisar os dados de malicious ==0 e malicious ==1
+# Notou-se que a média do atributo Harmless 
+# de malicious ==0 foi 58,65
+# e malicious ==1 foi 57,33
+# com base nisso é valido salienatar que o atributo Harmless
+# em relação aos casos fronteira não é tão incisivo quanto o malicious
+# pois as médias do atributo não são distantes em relação a resultado
+
+# Dito isso, será inserido um teste de comprovação de regra de detecção
+# no qual, a url que estiver com o atributo malicious >2
+# será considerada maligna. No teste será avaliado a quantidade de acerto da regra

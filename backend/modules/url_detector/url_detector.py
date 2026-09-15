@@ -39,13 +39,47 @@ def analisar_url(url):
     print(f"Status da requisição: {requisicao.status_code}")
 
     # atribuindo o conteúdo da resposta da requisição a uma variável dados, que é um dicionário com as informações da URL analisada
+
+    # atribuindo o conteúdo da resposta da requisição a uma variável dados, que é um dicionário com as informações da URL analisada
+
     dados = requisicao.json()
 
+    # verificando se a requisição foi bloqueada pelo limite da API
+
+    if requisicao.status_code == 429:
+        print("Limite de requisições da API do VirusTotal atingido.")
+        print("Resposta da API:")
+        print(dados)
+        return {"erro": "Limite da API atingido"}
+
+    # verificando se a requisição apresentou outro erro
+
+    if requisicao.status_code != 200:
+
+        print("Erro na requisição ao VirusTotal.")
+
+        return {
+            "erro": f"Erro HTTP {requisicao.status_code}"
+        }
+
+    # verificando se a resposta possui os dados esperados
+
+    if "data" not in dados:
+
+        print("Resposta inesperada do VirusTotal:")
+
+        print(dados)
+
+        return {
+            "erro": "Resposta inesperada da API"
+        }
+
     # atribuindo as estatísticas da análise a uma variável estatisticas, que é um dicionário com as informações da análise da URL
-    estatisticas = dados ["data"]["attributes"]["last_analysis_stats"]
+
+    estatisticas = dados["data"]["attributes"]["last_analysis_stats"]
+
     for chave, valor in estatisticas.items():
+
         print(f"\n{chave}: {valor}")
 
     return estatisticas
-
- 
