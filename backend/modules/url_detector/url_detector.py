@@ -3,10 +3,71 @@
 import os # permite que o python interaja com o sistema operacional
 import base64 # permite que o python converta dados binários em texto
 import requests # permite que o python faça requisições HTTP para o VirusTotal
+import time # trabalha com tempo e espera.
+
 from dotenv import load_dotenv # permite que o python carregue variáveis de ambiente
+from queue import Queue # cria filas 
+from threading import Thread # permite executar o processador da fila em segundo plano, sem travar o restante do sistema.
+
 
 # Carregando variáveis de ambiente
 load_dotenv()
+
+# Cria a fila que vai armazenar as URLs
+# que aguardam para serem analisadas.
+fila_urls = Queue()
+INTERVALO_REQUISICAO = 15 # Tempo mínimo entre as requisições ao VirusTotal.
+
+#função para enviar URL para a fila
+def adicionar_fila(url):
+
+    # cria fila exclusiva para guardar o resultado desta url
+    fila_resultado = Queue()
+
+    # coloca na fila principal 
+    # a url + a fila onde o resultado devera ser colocado
+    fila_urls.put((url, fila_resultado))
+
+    # aguarda o resultado da anlise
+    resultado = fila_resultado.get()
+
+    # retorna o resultado para quem chamou a função
+    return resultado
+
+
+# criando função para processar a fila
+def processar_fila():
+
+    while True:
+
+        # Pega a próxima tarefa da fila.
+        # A tarefa contém a URL e a fila específica
+        # onde o resultado deverá ser colocado.
+        url, fila_resultado = fila_urls.get()
+
+        print(f"\nAnalisando URL: {url}")
+
+        # Envia a URL para o motor de análise.
+        resultado = analisar_url(url)
+
+        # Coloca o resultado na fila específica
+        # dessa URL.
+        fila_resultado.put(resultado)
+
+        # Informa que terminou o processamento dessa URL.
+        fila_urls.task_done()
+
+        # Espera 15 segundos antes de processar
+        # a próxima URL.
+        print(
+            f"Aguardando {INTERVALO_REQUISICAO} segundos "
+            "para a próxima requisição"
+        )
+
+        time.sleep(INTERVALO_REQUISICAO)
+
+
+
 
 # Criando função para analisar
 def analisar_url(url):
@@ -93,6 +154,12 @@ def analisar_url(url):
         classificacao = "Legitima"
 
 # Adicionando a classificação às estatísticas da análise.
-    estatisticas["classificacao"] = classificacao
+    estatisticas["\nclassificacao"] = classificacao
 
     return estatisticas
+
+# Inicia o processamento da fila em segundo plano.
+# O daemon=True significa, de forma simples, 
+#que essa thread acompanha a execução principal 
+#do programa e não impede o Python de ser encerrado.
+Thread(target=processar_fila, daemon=True).start()
