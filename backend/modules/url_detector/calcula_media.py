@@ -29,7 +29,7 @@ def analisar_dados(dados):
 # Lendo os arquivos CSV
 dados1 = pd.read_csv("teste1.csv")
 dados2 = pd.read_csv("teste2.csv")
-
+dados3 = pd.read_csv("teste_regra.csv")
 
 # Realizando as análises
 media1, malicious1, suspicious1, harmless1 = analisar_dados(dados1)
@@ -47,6 +47,7 @@ m_malicious2 = dtale.show(malicious2)
 m_suspicious2 = dtale.show(suspicious2)
 m_harmless2 = dtale.show(harmless2)
 
+resultado_regra = dtale.show(dados3)
 
 # Mostrando as URLs do D-Tale
 print("Teste 1 - média geral:", m_geral1.main_url())
@@ -120,6 +121,7 @@ m_casos_malicious1 = dtale.show(casos_malicious_1)
 # Mostrando as URLs do D-Tale
 print("\nAnálise de casos fronteira - URLs com casos malicious == 0:", m_casos_malicious0.main_url())
 print("Análise de casos fronteira - URLs com casos malicious == 1:", m_casos_malicious1.main_url())
+print("\nResultado do teste de regra de detecção", resultado_regra.main_url())
 
 input("\nPressione Enter para encerrar o D-Tale...")
 
@@ -134,3 +136,23 @@ input("\nPressione Enter para encerrar o D-Tale...")
 # Dito isso, será inserido um teste de comprovação de regra de detecção
 # no qual, a url que estiver com o atributo malicious >2
 # será considerada maligna. No teste será avaliado a quantidade de acerto da regra
+
+
+# apos o teste da regra de detecção malicous >= 2
+# obteve os seguintes resultados
+
+# Acurácia: indica a proporção de classificações corretas no total de URLs analisadas.
+# Resultado: 98% (49 acertos de 50 URLs).
+
+# Precisão: indica quantas das URLs classificadas como malignas realmente eram malignas.
+# Resultado: 100%.
+
+# Recall: indica quantas das URLs realmente malignas foram identificadas pela regra.
+# Resultado: 96% (24 de 25 URLs malignas).
+
+# F1-score: combina precisão e recall em uma única métrica.
+# Resultado: 97,96%.
+
+# Matriz de confusão:
+# 25 verdadeiros negativos, 24 verdadeiros positivos,
+# 0 falsos positivos e 1 falso negativo.

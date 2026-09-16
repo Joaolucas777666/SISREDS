@@ -38,7 +38,6 @@ def analisar_url(url):
     # se retorna status code 200 a requisição foi bem sucedida, se retorna 400 ou 500 a requisição falhou
     print(f"Status da requisição: {requisicao.status_code}")
 
-    # atribuindo o conteúdo da resposta da requisição a uma variável dados, que é um dicionário com as informações da URL analisada
 
     # atribuindo o conteúdo da resposta da requisição a uma variável dados, que é um dicionário com as informações da URL analisada
 
@@ -81,5 +80,19 @@ def analisar_url(url):
     for chave, valor in estatisticas.items():
 
         print(f"\n{chave}: {valor}")
+
+    # Classificando a URL de acordo com a quantidade de mecanismos
+# que a identificaram como maliciosa.
+    if estatisticas["malicious"] >= 2:
+        classificacao = "Maligna"
+
+    elif estatisticas["malicious"] == 1:
+        classificacao = "Suspeita"
+
+    else:
+        classificacao = "Legitima"
+
+# Adicionando a classificação às estatísticas da análise.
+    estatisticas["classificacao"] = classificacao
 
     return estatisticas
