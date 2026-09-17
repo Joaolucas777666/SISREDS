@@ -154,7 +154,7 @@ def analisar_url(url):
         classificacao = "Legitima"
 
 # Adicionando a classificação às estatísticas da análise.
-    estatisticas["\nclassificacao"] = classificacao
+    estatisticas["classificacao"] = classificacao
 
     return estatisticas
 

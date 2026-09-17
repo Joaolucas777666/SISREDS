@@ -1,23 +1,325 @@
-body{
+/* =========================================================
+   FONTE
+   ========================================================= */
 
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700&display=swap');
+
+
+
+
+/* =========================================================
+   CONFIGURAÇÃO PRINCIPAL DO POPUP
+   ========================================================= */
+
+body {
     width: 400px;
     margin: 0;
-    padding: 20;
+    padding: 20px;
 
-    font-family: monospace, sans-serif;
-    background-color: #5a02e7;
-    color: #fff;
-
+    /* Faz o padding fazer parte dos 400px */
     box-sizing: border-box;
 
-    h1{
+    /* arrendondando popup */
+    border-radius: 20px;
+
+    /* Imagem de fundo */
+    background-image: url("fundo_sisreds.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    color: white;
+    font-family: "Orbitron", sans-serif;
+
+    animation: aparecer 0.4s ease;
+
+    position: relative;
+
+    /* Faz a camada respeitar os cantos */
+    overflow: hidden;
+}
+
+
+/* Camada de cor sobre a imagem */
+body::before {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: rgba(91, 0, 214, 0.50);
+
+    z-index: 0;
+}
+
+/* Mantém o conteúdo na frente da camada */
+body > * {
+    position: relative;
+    z-index: 1;
+}
+
+
+/* =========================================================
+   TEMA LEGÍTIMO - ROXO
+   ========================================================= */
+
+body.tema-legitima {
+    color: white;
+}
+
+body.tema-legitima::before {
+    background: rgba(91, 0, 214, 0.50);
+}
+
+
+/* =========================================================
+   TEMA SUSPEITO - AMARELO
+   ========================================================= */
+
+body.tema-suspeita {
+    color: #222;
+}
+
+body.tema-suspeita::before {
+    background: rgba(193, 118, 6, 0.45);
+}
+
+
+/* =========================================================
+   TEMA MALICIOSO - VERMELHO
+   ========================================================= */
+
+body.tema-maliciosa {
+    color: white;
+}
+
+body.tema-maliciosa::before {
+    background: rgba(168, 2, 2, 0.50);
+}
+
+/* =========================================================
+   TÍTULO
+   ========================================================= */
+
+h1 {
     text-align: center;
     margin-top: 10px;
-    }
 
-    p {
-        text-align: center;
-        margin-top: 14px;
-    }
+    /* Deixa o nome SISREDS mais destacado */
+    font-weight: 700;
 
+    /* Tamanho do título */
+    font-size: 28px;
+
+    /* Espaçamento entre as letras */
+    letter-spacing: 2px;
 }
+
+
+/* =========================================================
+   PARÁGRAFOS
+   ========================================================= */
+
+p {
+    text-align: center;
+    margin-top: 12px;
+    font-size: 11px;
+
+    /* Pequeno espaçamento entre letras */
+    letter-spacing: 0.5px;
+}
+
+
+/* =========================================================
+   RESULTADO DA ANÁLISE
+   ========================================================= */
+
+#resultado {
+    margin-top: 20px;
+    padding: 15px;
+
+    /* Cantos arredondados */
+    border-radius: 15px;
+
+    /* Fundo padrão do resultado */
+    background: rgba(242, 131, 57, 0.093);
+
+    font-weight: bold;
+    line-height: 1.4;
+
+    /* Animação de entrada */
+    animation: resultadoEntrar 0.5s ease;
+}
+
+
+/* =========================================================
+   BOTÃO VER DETALHES
+   ========================================================= */
+
+#btnDetalhes {
+
+    /* Permite posicionar o botão no canto */
+    display: block;
+    position: absolute;
+
+    /* Canto inferior direito */
+    bottom: 0;
+    right: 0;
+
+    /* Tamanho do botão */
+    padding: 3px 12px;
+
+    /* Remove a borda */
+    border: none;
+
+    /* Cor do botão */
+    background: #fff4c829;
+    color: rgb(0, 0, 0);
+
+    /* Fonte */
+    font-family: "Orbitron", sans-serif;
+    font-weight: bold;
+
+    /* Mouse */
+    cursor: pointer;
+
+    /* Cantos arredondados */
+    border-radius: 8px;
+
+    /* Transição */
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    /* Animação de entrada */
+    animation: botaoEntrar 0.5s ease;
+}
+
+
+/* Efeito ao passar o mouse */
+#btnDetalhes:hover {
+
+    /* Aumenta levemente o botão */
+    transform: scale(1.05);
+
+    /* Brilho do botão */
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.7);
+}
+
+
+/* =========================================================
+   DETALHES DA URL
+   ========================================================= */
+
+#detalhes {
+    padding: 10px;
+
+    /* Evita que uma URL muito grande ultrapasse o popup */
+    overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DE ENTRADA DO POPUP
+   ========================================================= */
+
+@keyframes aparecer {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DE ENTRADA DO RESULTADO
+   ========================================================= */
+
+@keyframes resultadoEntrar {
+
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* =========================================================
+   ALERTA SUSPEITO - PULSAÇÃO + BRILHO AMARELO
+   ========================================================= */
+
+body.tema-suspeita #resultado {
+    animation: alertaSuspeito 2s ease-in-out infinite;
+}
+
+
+@keyframes alertaSuspeito {
+
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 0, 0, 0.652);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 18px rgba(255, 200, 0, 0.316);
+    }
+}
+
+
+/* =========================================================
+   ALERTA MALICIOSO - PULSAÇÃO + BRILHO VERMELHO
+   ========================================================= */
+
+body.tema-maliciosa #resultado {
+    animation: alertaMalicioso 1.5s ease-in-out infinite;
+}
+
+
+@keyframes alertaMalicioso {
+
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 rgba(255, 0, 0, 0);
+    }
+
+    50% {
+        transform: scale(1.02);
+        box-shadow: 0 0 18px rgba(255, 40, 40, 0.7);
+    }
+}
+
+
+/* =========================================================
+   ANIMAÇÃO DO BOTÃO
+   ========================================================= */
+
+@keyframes botaoEntrar {
+
+    from {
+        opacity: 0;
+        transform: translateY(8px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Garante que o botão fique escondido quando
+   o atributo hidden estiver ativo */
+   #btnDetalhes[hidden]{
+
+    display: none !important;
+
+   }

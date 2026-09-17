@@ -10,7 +10,20 @@
 <body>
     <h1>SISREDS</h1>
     <p>Sistema Inteligente de Segurança em Redes Sociais!</p>
+    
     <p id="status">Verificando conexão...</p>
+    <p id="resultado">🟢 Está tudo certo! Pode continuar navegando.</p>
+
+    <!-- Botão que aparecerá somente quando houver ameaça -->
+    <button id="btnDetalhes" hidden>
+        Ver detelhes
+    </button>
+
+    <!-- Área que mostrará os detalhes -->
+     <div id="detalhes" hidden>
+        <p id="urlAnalisada"></p>
+     </div>
+     
     <script src="popup.js"></script> <!--comunicação com o backend -->
 </body>
 </html>

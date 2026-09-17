@@ -35,11 +35,11 @@ def analisar_url_api():
         url = dados["url"]
 
         # imprimindo a url recebida no console do terminal
-        print(f"URL recebida: {url}")
+        print(f"\nURL recebida: {url}")
 
         resultado = adicionar_fila(url)
 
-        print(f"\nUrl analisada com Sucesso!: \n{resultado}")
+        print(f"\nUrl analisada com Sucesso!: {resultado}")
 
         return jsonify(resultado)
 

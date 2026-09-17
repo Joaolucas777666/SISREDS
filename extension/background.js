@@ -69,5 +69,20 @@ chrome.runtime.onMessage.addListener(async (mensagem) => {
 
         // Mostra no console os dados retornados pelo Flask.
         console.log("Dados recebidos do Flask:", dados);
-    }
+
+        // Salva o resultado recebido do Flask
+        // no armazenamento local da extensão.
+        await chrome.storage.local.set({
+
+            // "resultadoAnalise" será o nome utilizado
+            // para encontrar esse resultado posteriormente.
+            //
+            // dados contém o resultado enviado pelo Flask.
+            resultadoAnalise: dados,
+            urlAnalisada: mensagem.url
+        });
+
+        console.log(">>> Resultado da análise salvo no storage!");
+    }    
+    
 });

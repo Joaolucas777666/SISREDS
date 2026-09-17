@@ -134,7 +134,7 @@ input("\nPressione Enter para encerrar o D-Tale...")
 # pois as médias do atributo não são distantes em relação a resultado
 
 # Dito isso, será inserido um teste de comprovação de regra de detecção
-# no qual, a url que estiver com o atributo malicious >2
+# no qual, a url que estiver com o atributo malicious >=2
 # será considerada maligna. No teste será avaliado a quantidade de acerto da regra
 
 
