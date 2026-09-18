@@ -125,6 +125,12 @@ if (
 }
 
 }
+
+
+
+
+
 // executa a função quando o popup é aberto
 verificarBackend();
 mostrarResultado();
+
