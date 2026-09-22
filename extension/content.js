@@ -3,7 +3,7 @@
 // ==============================
 
 // Mostra uma mensagem no console para indicar que o script foi carregado com sucesso
-console.log("SISREDS carregado com sucesso na página!");
+console.log("SISREDS: content.js carregado nesta página!");
 
 // Obtém a URL atual da página
 const urlAtual = window.location.href;
@@ -21,36 +21,32 @@ url: urlAtual
 // MÓDULO DE FAKE NEWS
 // ==============================
 
-// Captura todo o texto visível da página
-const textoPagina = document.body.innerText;
+// Procura o elemento principal da notícia
+const noticia = document.querySelector("article");
 
-// divide o texto em linhas
-const linhas = textoPagina.split("\n");
+// Cria a variável para armazenar o texto da notícia
+let textoPagina = "";
 
-console.log("Quantidade de linhas:", linhas.length);
+// Verifica se encontrou a notícia
+if (noticia) {
 
-// Analisa cada linha capturada
-linhas.forEach((linha, indice) => {
+    console.log("✅ Elemento da notícia encontrado!");
 
-    // Remove espaços desnecessários do começo e do fim
-    const texto = linha.trim();
+    // Captura somente o texto dentro do elemento
+    textoPagina = noticia.innerText;
 
-    // Ignora linhas vazias
-    if (texto.length === 0) {
-        return;
-    }
+    console.log("Texto da notícia:");
+    console.log(textoPagina);
 
-    // Divide o texto em palavras
-    const palavras = texto.split(" ");
+} else {
 
-    // Mostra o número da linha, caracteres, palavras e conteúdo
-    console.log(
-        indice,
-        "| caracteres:", texto.length,
-        "| palavras:", palavras.length,
-        "| texto:", texto
-    );
-});
+    console.log("❌ Elemento <article> não encontrado.");
+
+}
+
+// Mostra o texto capturado no console
+console.log("Texto capturado:");
+console.log(textoPagina);
 
 // Mostra o texto capturado no console
 console.log("Texto capturado:");
