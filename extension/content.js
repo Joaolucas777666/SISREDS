@@ -1,3 +1,7 @@
+// ==============================
+// MÓDULO DE URL
+// ==============================
+
 // Mostra uma mensagem no console para indicar que o script foi carregado com sucesso
 console.log("SISREDS carregado com sucesso na página!");
 
@@ -12,6 +16,49 @@ chrome.runtime.sendMessage({
 tipo: "url",
 url: urlAtual
 })
+
+// ==============================
+// MÓDULO DE FAKE NEWS
+// ==============================
+
+// Captura todo o texto visível da página
+const textoPagina = document.body.innerText;
+
+// divide o texto em linhas
+const linhas = textoPagina.split("\n");
+
+console.log("Quantidade de linhas:", linhas.length);
+
+// Analisa cada linha capturada
+linhas.forEach((linha, indice) => {
+
+    // Remove espaços desnecessários do começo e do fim
+    const texto = linha.trim();
+
+    // Ignora linhas vazias
+    if (texto.length === 0) {
+        return;
+    }
+
+    // Divide o texto em palavras
+    const palavras = texto.split(" ");
+
+    // Mostra o número da linha, caracteres, palavras e conteúdo
+    console.log(
+        indice,
+        "| caracteres:", texto.length,
+        "| palavras:", palavras.length,
+        "| texto:", texto
+    );
+});
+
+// Mostra o texto capturado no console
+console.log("Texto capturado:");
+console.log(textoPagina);
+
+// ==============================
+// MOSTRA ALERTA
+// ==============================
 
 // cria um alerta visual 
 function mostrarAlerta(){
