@@ -113,9 +113,21 @@ if (
     btnDetalhes.addEventListener("click", () => {
 
         // Mostra a URL analisada.
-        document.getElementById("urlAnalisada").textContent =
-            "URL analisada: " + dados.urlAnalisada;
+        document.getElementById("urlAnalisada").innerHTML = `
+        <strong>URL analisada:</strong>
+        <p>${dados.urlAnalisada}</p>
 
+        <strong>Classificação:</strong>
+        ${dados.resultadoAnalise.classificacao}
+        <br><br>
+
+        <strong>Resultado da análise:</strong>
+        <p>Maliciosas: ${dados.resultadoAnalise.malicious}</p>
+        <p>Suspeitas: ${dados.resultadoAnalise.suspicious}</p>
+        <p>Não detectadas: ${dados.resultadoAnalise.undetected}</p>
+        <p>Inofensivas: ${dados.resultadoAnalise.harmless}</p>
+    `;
+            
         // Mostra a área de detalhes.
         document.getElementById("detalhes").hidden = false;
 

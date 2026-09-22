@@ -5,7 +5,7 @@ console.log("SISREDS: background.js carregado com sucesso!");
 
 // Escuta mensagens enviadas por outras partes da extensão,
 // como o content.js.
-chrome.runtime.onMessage.addListener(async (mensagem) => {
+chrome.runtime.onMessage.addListener(async (mensagem,sender) => {
 
     // Mostra no console a mensagem que foi recebida.
     // Isso permite verificar se o content.js conseguiu
@@ -81,6 +81,22 @@ chrome.runtime.onMessage.addListener(async (mensagem) => {
             resultadoAnalise: dados,
             urlAnalisada: mensagem.url
         });
+
+        // Se a pagina for suspeita ou maliciosa,
+        // avisa o content.js para exibir o alerta
+        if (
+
+            dados.classificacao === "Suspeita" ||
+            dados.classificacao === "Maliciosa"
+        ){
+            chrome.tabs.sendMessage(
+                sender.tab.id,
+                {
+                    tipo: "mostrar-alerta",
+                    classificacao: dados.classificacao
+                }
+            )
+        }
 
         console.log(">>> Resultado da análise salvo no storage!");
     }    
