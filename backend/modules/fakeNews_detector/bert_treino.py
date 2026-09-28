@@ -81,8 +81,8 @@ class DatasetNoticias(Dataset): #Dataset é a classe que herdamos da blioteca Py
         entradas = tokenizer(
             texto, #pegando o texto da notícia e passando para o tokenizer
             padding="max_length", #Determina que todas as notícias terão o mesmo tamanho de entrada.
-            truncation=True, #Se uma notícia tiver mais de 512 tokens, ela será cortada para caber no limite.
-            max_length=512, #cada notícia terá espaço para 512 tokens.
+            truncation=True, #Se uma notícia tiver mais de 256 tokens, ela será cortada para caber no limite.
+            max_length=256, #cada notícia terá espaço para 256 tokens.
             return_tensors="pt" # devolva os resultados no formato de tensores do PyTorch   
         )
         return {
@@ -174,9 +174,9 @@ for epoca in range(epocas):
 
     print(f"\nIniciando época {epoca + 1} de {epocas}...")
 
-
     # Percorre os 720 lotes do DataLoader.
-    for lote in dataloader:
+    # enumerate() também fornece o número do lote atual.
+    for indice, lote in enumerate(dataloader):
 
         # Pega os tokens das notícias
         # e envia para o dispositivo.
@@ -190,42 +190,38 @@ for epoca in range(epocas):
         # e envia para o dispositivo.
         labels = lote["labels"].to(dispositivo)
 
-
         # Zera os gradientes da etapa anterior.
         otimizador.zero_grad()
 
-
         # Envia o lote para o BERT.
-        #
-        # O labels permite que o BERT calcule
-        # automaticamente a perda (loss).
         saida = carrega_BERT(
             input_ids=input_ids,
             attention_mask=attention_mask,
             labels=labels
         )
 
-
         # Obtém a perda calculada pelo BERT.
         perda = saida.loss
-
 
         # Calcula os gradientes.
         perda.backward()
 
-
         # Atualiza os parâmetros do BERT.
         otimizador.step()
-
 
         # Soma a perda desse lote
         # à perda total da época.
         perda_total += perda.item()
 
+        # Mostra o progresso a cada 10 batches.
+        if (indice + 1) % 10 == 0:
+            print(
+                f"Batch {indice + 1}/{len(dataloader)} "
+                f"- Perda: {perda.item():.4f}"
+            )
 
     # Calcula a perda média da época.
     perda_media = perda_total / len(dataloader)
-
 
     # Mostra o resultado da época.
     print(
