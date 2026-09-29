@@ -5,3 +5,5 @@ __pycache__/
 .env.*
 !.env.example
 *.log
+backend/modules/fakeNews_detector/modelo_treinado/
+backend/modules/fakeNews_detector/modelo_treinado_BACKUP/

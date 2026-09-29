@@ -1,0 +1,46 @@
+# Casos de Teste — Classificador de Fake News
+
+## Teste 1 — Texto com pistas explícitas de falsidade
+
+**Texto:**
+
+Uma suposta organização internacional teria confirmado que a Terceira Guerra Mundial começará nas próximas semanas, após uma série de reuniões secretas entre grandes potências. Segundo o comunicado fictício, tropas de diversos países já estariam sendo mobilizadas e um conflito em larga escala seria inevitável. A organização também teria recomendado que a população se prepare para possíveis interrupções no fornecimento de energia, alimentos e internet. Autoridades internacionais, porém, não fizeram nenhum anúncio oficial sobre o início de uma nova guerra.
+
+**Resultado obtido pelo modelo:** NOTÍCIA FALSA
+**Confiança do modelo:** 99,41%
+
+---
+
+## Teste 2 — Texto com linguagem jornalística
+
+**Texto:**
+
+Países membros de uma organização internacional intensificaram reuniões diplomáticas nos últimos dias após o aumento das tensões entre grandes potências. Fontes ligadas às negociações afirmam que governos já discutem medidas de preparação para um possível conflito de grandes proporções, incluindo mudanças nos protocolos de segurança e mobilização de forças militares. As movimentações provocaram preocupação entre autoridades e analistas internacionais, que acompanham de perto a possibilidade de uma escalada militar. Ainda não há confirmação oficial sobre o início de uma nova guerra, mas os recentes acontecimentos aumentaram os alertas sobre uma possível expansão do conflito nas próximas semanas.
+
+**Resultado obtido pelo modelo:** NOTÍCIA FALSA
+**Confiança do modelo:** 74,73%
+
+---
+
+## Teste 3 — Texto fictício com linguagem jornalística mais neutra
+
+**Texto:**
+
+Autoridades de diferentes países realizaram nesta semana uma série de reuniões para discutir o aumento das tensões diplomáticas entre grandes potências. Segundo pessoas familiarizadas com as negociações, os encontros incluem representantes das áreas de defesa e relações exteriores, que avaliam possíveis cenários diante da crescente movimentação militar registrada em diferentes regiões.
+
+Documentos apresentados durante as reuniões também mencionariam a possibilidade de adoção de medidas emergenciais caso a situação internacional se agrave nas próximas semanas. Entre as medidas discutidas estariam alterações nos protocolos de segurança e o reforço da presença militar em áreas consideradas estratégicas.
+
+Apesar das discussões, representantes diplomáticos afirmam que ainda existe espaço para negociações e que nenhuma decisão sobre uma operação militar conjunta foi tomada. As autoridades envolvidas devem realizar novos encontros nos próximos dias para avaliar a evolução do cenário.
+
+**Resultado obtido pelo modelo:** NOTÍCIA VERDADEIRA
+**Confiança do modelo:** 99,56%
+
+---
+
+## Observação
+
+Os três textos acima são **fictícios** e foram criados para testar o comportamento do classificador BERT em diferentes estilos de escrita.
+
+Os resultados demonstram que alterações na forma de apresentação do mesmo tipo de conteúdo podem modificar significativamente a classificação e a confiança estimada pelo modelo.
+
+O terceiro teste representa um caso de **falso positivo**, no qual um texto fictício foi classificado pelo modelo como verdadeiro com alta confiança.

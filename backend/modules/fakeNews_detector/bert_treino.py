@@ -228,3 +228,10 @@ for epoca in range(epocas):
         f"Época {epoca + 1}/{epocas} "
         f"- Perda média: {perda_media:.4f}"
     )
+
+# SALVANDO O MODELO TREINADO
+
+carrega_BERT.save_pretrained("modelo_treinado")
+tokenizer.save_pretrained("modelo_treinado")
+
+print("\nModelo treinado salvo com sucesso!")

@@ -1,0 +1,13 @@
+===== AVALIAÇÃO DO MODELO BERT =====
+
+Total de notícias avaliadas: 1440
+
+MÉTRICAS:
+Acurácia: 0.9875
+Precisão: 0.9848
+Recall: 0.9903
+F1-score: 0.9875
+
+MATRIZ DE CONFUSÃO:
+[[709  11]
+ [  7 713]]
